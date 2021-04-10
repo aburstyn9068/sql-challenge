@@ -12,11 +12,6 @@ FROM employees e
 LEFT JOIN salaries s
 ON s.emp_no=e.emp_no;
 
---SELECT emp_no, last_name, first_name, sex FROM employees
---UNION
---SELECT salary FROM salaries
---WHERE employees.emp_no = salary.emp_no;
-
 -- List first name, last name, and hire date for employees who were hired in 1986.
 SELECT first_name, last_name, hire_date FROM employees
 WHERE hire_date LIKE '%/1986';
@@ -27,22 +22,11 @@ SELECT d.dept_no, d.dept_name, dm.emp_no, e.last_name, e.first_name FROM departm
 JOIN dept_manager dm ON d.dept_no=dm.dept_no
 JOIN employees e ON e.dep_no=dm.emp_no;
 
-
 -- List the department of each employee with the following information: employee number, last name, 
 -- first name, and department name.
 SELECT de.emp_no, e.last_name, e.first_name, d.dept_name FROM dept_emp de
 JOIN employees e ON de.emp_no=e.emp_no
 JOIN departments d ON d.dept_no=de.dept_no;
-
---SELECT e.emp_no, e.last_name, e.first_name,
---	(
---	SELECT d.dept_name FROM departments d
---	WHERE d.dept_no IN(
---		SELECT de.dept_no FROM dept_emp de
---		WHERE de.emp_no = e.emp_no
---		)
---	)
---FROM employees e;
 
 -- List first name, last name, and sex for employees whose first name is "Hercules" and 
 -- last names begin with "B."
